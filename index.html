@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة لجنة التقارير ونظام النماذج | نادي الاقتصاد</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- استدعاء حزمة خط ثمانية الرسمية للويب -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@dawod/thmanyah-font-web/index.css">
+    <link rel="stylesheet" href="https://unpkg.com/@dawod/thmanyah-font-web/index.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Thmanyah Sans"', '"Thmanyah sans 1.2"', 'sans-serif'],
+                        serif: ['"Thmanyah Serif Display"', 'serif']
+                    },
+                    colors: {
+                        club: '#0b221a',
+                        clubLight: '#133b2d',
+                        darkbg: '#07140f',
+                        darkcard: '#0d231b'
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        /* تعريف جميع أوزان خط ثمانية لضمان التوافق التام على كافة المتصفحات */
+        @font-face {
+            font-family: 'Thmanyah Sans';
+            src: url('https://cdn.jsdelivr.net/npm/@dawod/thmanyah-font-web/fonts/thmanyah-sans-Light.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/npm/@dawod/thmanyah-font-web/fonts/ThmanyahSans-Light.woff2') format('woff2'),
+                 url('https://unpkg.com/@dawod/thmanyah-font-web/fonts/thmanyah-sans-Light.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Thmanyah Sans';
+            src: url('https://cdn.jsdelivr.net/npm/@dawod/thmanyah-font-web/fonts/thmanyah-sans-Regular.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/npm/@dawod/thmanyah-font-web/fonts/ThmanyahSans-Regular.woff2') format('woff2'),
+                 url('https://unpkg.com/@dawod/thmanyah-font-web/fonts/thmanyah-sans-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Thmanyah Sans';
+            src: url('https://cdn.jsdelivr.net/npm/@dawod/thmanyah-font-web/fonts/thmanyah-sans-Medium.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/npm/@dawod/thmanyah-font-web/fonts/ThmanyahSans-Medium.woff2') format('woff2'),
+                 url('https://unpkg.com/@dawod/thmanyah-font-web/fonts/thmanyah-sans-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Thmanyah Sans';
+            src: url('https://cdn.jsdelivr.net/npm/@dawod/thmanyah-font-web/fonts/thmanyah-sans-Bold.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/npm/@dawod/thmanyah-font-web/fonts/ThmanyahSans-Bold.woff2') format('woff2'),
+                 url('https://unpkg.com/@dawod/thmanyah-font-web/fonts/thmanyah-sans-Bold.woff2') format('woff2');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Thmanyah Sans';
+            src: url('https://cdn.jsdelivr.net/npm/@dawod/thmanyah-font-web/fonts/thmanyah-sans-Bold.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/npm/@dawod/thmanyah-font-web/fonts/ThmanyahSans-Bold.woff2') format('woff2'),
+                 url('https://unpkg.com/@dawod/thmanyah-font-web/fonts/thmanyah-sans-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Thmanyah Sans';
+            src: url('https://cdn.jsdelivr.net/npm/@dawod/thmanyah-font-web/fonts/thmanyah-sans-Black.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/npm/@dawod/thmanyah-font-web/fonts/ThmanyahSans-Black.woff2') format('woff2'),
+                 url('https://unpkg.com/@dawod/thmanyah-font-web/fonts/thmanyah-sans-Black.woff2') format('woff2');
+            font-weight: 800;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Thmanyah Sans';
+            src: url('https://cdn.jsdelivr.net/npm/@dawod/thmanyah-font-web/fonts/thmanyah-sans-Black.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/npm/@dawod/thmanyah-font-web/fonts/ThmanyahSans-Black.woff2') format('woff2'),
+                 url('https://unpkg.com/@dawod/thmanyah-font-web/fonts/thmanyah-sans-Black.woff2') format('woff2');
+            font-weight: 900;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* تعميم خط ثمانية على كافة نصوص وعناصر الموقع مع الحفاظ على عمل أيقونات FontAwesome */
+        body, html, div, span, p, a, h1, h2, h3, h4, h5, h6,
+        input, button, select, option, textarea, label,
+        table, thead, tbody, tr, th, td, ul, li, nav, section, header, aside, main, svg text {
+            font-family: 'Thmanyah Sans', 'Thmanyah sans 1.2', sans-serif !important;
+            font-feature-settings: "salt" 1, "kern" 1, "liga" 1;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* شاشة الدخول وتفكك الشعار */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, #12382a 0%, #071611 100%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: opacity 0.7s ease, visibility 0.7s ease;
+        }
+        #splash-screen.hidden-splash {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .logo-piece {
+            transition: transform 1.15s cubic-bezier(0.22, 1, 0.36, 1), opacity 1s ease, filter 1s ease;
+            transform-origin: center;
+            will-change: transform, opacity;
+        }
+
+        #splash-screen.disintegrate .piece-bar-1 { transform: translate(160px, -210px) rotate(38deg) scale(0.35); opacity: 0; filter: blur(4px); }
+        #splash-screen.disintegrate .piece-bar-2 { transform: translate(110px, 230px) rotate(-32deg) scale(0.35); opacity: 0; filter: blur(4px); }
+        #splash-screen.disintegrate .piece-bar-3 { transform: translate(35px, -260px) rotate(24deg) scale(0.35); opacity: 0; filter: blur(4px); }
+        #splash-screen.disintegrate .piece-bar-4 { transform: translate(-75px, 240px) rotate(-42deg) scale(0.35); opacity: 0; filter: blur(4px); }
+        #splash-screen.disintegrate .piece-ar-1  { transform: translate(-180px, -150px) rotate(-18deg) scale(0.5); opacity: 0; filter: blur(6px); }
+        #splash-screen.disintegrate .piece-ar-2  { transform: translate(-250px, 90px) rotate(22deg) scale(0.5); opacity: 0; filter: blur(6px); }
+        #splash-screen.disintegrate .piece-en-1  { transform: translate(-140px, 210px) rotate(16deg) scale(0.45); opacity: 0; filter: blur(5px); }
+        #splash-screen.disintegrate .piece-en-2  { transform: translate(140px, 190px) rotate(-25deg) scale(0.45); opacity: 0; filter: blur(5px); }
+        #splash-screen.disintegrate .piece-mini  { transform: translate(0px, -280px) scale(0.1); opacity: 0; }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.25s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-[#f4f7f5] dark:bg-darkbg text-slate-800 dark:text-slate-100 min-h-screen transition-colors duration-300">
+
+    <div id="splash-screen">
+        <div class="relative flex flex-col items-center px-4 select-none">
+            <svg viewBox="0 0 820 250" class="w-[92vw] max-w-[680px] h-auto drop-shadow-2xl overflow-visible">
+                <!-- الأعمدة الأربعة الرئيسية لشعار نادي الاقتصاد -->
+                <g class="logo-piece piece-bar-1">
+                    <rect x="745" y="132" width="22" height="68" rx="2" fill="#ffffff"/>
+                    <rect x="745" y="45" width="22" height="68" rx="2" fill="#10b981"/>
+                </g>
+                <g class="logo-piece piece-bar-2">
+                    <rect x="698" y="75" width="22" height="125" rx="2" fill="#ffffff"/>
+                </g>
+                <g class="logo-piece piece-bar-3">
+                    <rect x="651" y="108" width="22" height="92" rx="2" fill="#ffffff"/>
+                </g>
+                <g class="logo-piece piece-bar-4">
+                    <rect x="604" y="45" width="22" height="155" rx="2" fill="#ffffff"/>
+                </g>
+
+                <!-- النص العربي: نادي الاقتصاد مع الأعمدة المدمجة -->
+                <text x="565" y="118" text-anchor="end" fill="#ffffff" font-size="62" font-weight="800" class="logo-piece piece-ar-1">نادي</text>
+                <g class="logo-piece piece-mini">
+                    <rect x="380" y="64" width="8" height="54" rx="1.5" fill="#ffffff"/>
+                    <rect x="363" y="80" width="8" height="22" rx="1.5" fill="#10b981"/>
+                    <rect x="346" y="64" width="8" height="38" rx="1.5" fill="#ffffff"/>
+                    <rect x="346" y="109" width="8" height="9" rx="1.5" fill="#10b981"/>
+                </g>
+                <text x="334" y="118" text-anchor="end" fill="#ffffff" font-size="62" font-weight="800" class="logo-piece piece-ar-2">قتصاد</text>
+
+                <!-- النص الإنجليزي: Economic Club -->
+                <text x="565" y="190" text-anchor="end" fill="#ffffff" font-size="48" font-weight="700" letter-spacing="1" class="logo-piece piece-en-2">Club</text>
+                <text x="415" y="190" text-anchor="end" fill="#ffffff" font-size="48" font-weight="700" letter-spacing="1" class="logo-piece piece-en-1">Econo</text>
+                <g class="logo-piece piece-mini">
+                    <rect x="242" y="156" width="6" height="34" rx="1" fill="#ffffff"/>
+                    <rect x="253" y="170" width="6" height="20" rx="1" fill="#10b981"/>
+                    <rect x="264" y="162" width="6" height="28" rx="1" fill="#ffffff"/>
+                    <rect x="275" y="154" width="6" height="8" rx="1" fill="#10b981"/>
+                    <rect x="275" y="166" width="6" height="24" rx="1" fill="#ffffff"/>
+                </g>
+                <text x="234" y="190" text-anchor="end" fill="#ffffff" font-size="48" font-weight="700" class="logo-piece piece-en-1">c</text>
+            </svg>
+
+            <div id="splash-sub" class="mt-6 flex items-center gap-3 text-emerald-300/90 text-xs sm:text-sm font-bold tracking-wide transition-opacity duration-500">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span>بوابة لجنة التقارير ونظام النماذج الذكي — نادي الاقتصاد</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="appLayout" class="min-h-screen flex flex-col lg:flex-row">
+
+        <!-- القائمة الجانبية -->
+        <aside id="mainSidebar" class="w-full lg:w-72 bg-club text-white shrink-0 flex flex-col justify-between border-b lg:border-b-0 lg:border-l border-white/10">
+            <div>
+                <!-- رأس القائمة الجانبية بشعار النادي -->
+                <div class="p-5 flex items-center justify-between border-b border-white/10">
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center shrink-0">
+                            <svg viewBox="0 0 60 60" class="w-7 h-7">
+                                <rect x="6" y="34" width="7" height="18" fill="#ffffff" rx="1"/>
+                                <rect x="6" y="10" width="7" height="17" fill="#10b981" rx="1"/>
+                                <rect x="19" y="18" width="7" height="34" fill="#ffffff" rx="1"/>
+                                <rect x="32" y="28" width="7" height="24" fill="#ffffff" rx="1"/>
+                                <rect x="45" y="10" width="7" height="42" fill="#ffffff" rx="1"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="font-black text-base leading-tight">نادي الاقتصاد</h1>
+                            <p class="text-[11px] text-emerald-300 font-bold">بوابة لجنة التقارير</p>
+                        </div>
+                    </div>
+                    <button onclick="replaySplash()" title="إعادة عرض تفكك الشعار" class="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs text-emerald-300 transition">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+
+                <!-- أزرار التنقل -->
+                <nav class="p-3.5 space-y-1.5">
+                    <button onclick="switchTab('home')" id="nav-home" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold bg-emerald-500 text-slate-950 transition">
+                        <i class="fa-solid fa-house text-sm w-5 text-center"></i>
+                        <span>الرئيسية</span>
+                    </button>
+                    <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-300 hover:bg-white/10 transition">
+                        <i class="fa-solid fa-chart-pie text-sm w-5 text-center"></i>
+                        <span>لوحة التحكم والتقارير</span>
+                    </button>
+                    <button onclick="switchTab('forms')" id="nav-forms" class="nav-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-bold text-slate-300 hover:bg-white/10 transition">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-wpforms text-sm w-5 text-center text-emerald-400"></i>
+                            <span>صانع النماذج (Forms)</span>
+                        </div>
+                        <span class="px-2 py-0.5 text-[10px] rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">Google Sheet</span>
+                    </button>
+                    <button onclick="switchTab('tasks')" id="nav-tasks" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-300 hover:bg-white/10 transition">
+                        <i class="fa-solid fa-list-check text-sm w-5 text-center"></i>
+                        <span>سير المهام (Kanban)</span>
+                    </button>
+                    <button onclick="switchTab('members')" id="nav-members" class="nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-300 hover:bg-white/10 transition">
+                        <i class="fa-solid fa-users text-sm w-5 text-center"></i>
+                        <span>أعضاء اللجنة</span>
+                    </button>
+                </nav>
+            </div>
+
+            <!-- بطاقة رئيس اللجنة في أسفل القائمة -->
+            <div class="p-4 m-3.5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500 text-slate-950 font-black flex items-center justify-center text-sm">
+                        خب
+                    </div>
+                    <div>
+                        <p class="text-xs font-black text-white">رئيس اللجنة خالد بلحمر</p>
+                        <p class="text-[11px] text-emerald-300">رئيس لجنة التقارير</p>
+                    </div>
+                </div>
+                <div class="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-300">
+                    <span>النائبة: نائبة اللجنة دانا الشمري</span>
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- المحتوى الرئيسي -->
+        <div class="flex-1 flex flex-col min-w-0">
+
+            <!-- الشريط العلوي -->
+            <header id="mainTopbar" class="bg-white/90 dark:bg-darkcard/90 backdrop-blur-md border-b border-slate-200/80 dark:border-white/10 px-6 py-4 flex flex-wrap items-center justify-between gap-4 sticky top-0 z-30">
+                <div>
+                    <h2 id="pageHeaderTitle" class="text-lg font-black text-slate-900 dark:text-white">الرئيسية — بوابة لجنة التقارير</h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">نادي الاقتصاد • الفصل الدراسي الأول 1447هـ</p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2.5">
+                    <button onclick="switchTab('forms'); setFormsSubView('builder');" class="px-3.5 py-2 rounded-xl bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500 hover:text-slate-950 text-xs font-bold transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-wpforms"></i>
+                        <span>إنشاء فورم للنادي</span>
+                    </button>
+                    <button onclick="openReportModal()" class="px-3.5 py-2 rounded-xl bg-club dark:bg-emerald-500 text-white dark:text-slate-950 text-xs font-bold hover:opacity-95 transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>تقرير جديد</span>
+                    </button>
+                    <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-200 hover:bg-slate-200 transition" title="الوضع الليلي">
+                        <i class="fa-solid fa-moon dark:hidden"></i>
+                        <i class="fa-solid fa-sun hidden dark:inline text-amber-300"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- حاوية الأقسام -->
+            <main class="p-4 sm:p-6 lg:p-8 space-y-6 flex-1">
+
+                <!-- ========================================================= -->
+                <!-- 1. قسم الرئيسية                                           -->
+                <!-- ========================================================= -->
+                <section id="tab-home" class="tab-content active space-y-6">
+                    <!-- البانر الترحيبي -->
+                    <div class="bg-gradient-to-l from-club to-clubLight rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+                        <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                            <div class="space-y-3 max-w-2xl">
+                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-400/15 border border-emerald-400/30 text-emerald-300 text-xs font-bold">
+                                    <span>نادي الاقتصاد | Economic Club</span>
+                                    <span>•</span>
+                                    <span>لجنة التقارير</span>
+                                </div>
+                                <h3 class="text-2xl sm:text-3xl font-black leading-snug">
+                                    أهلاً بك يا رئيس اللجنة خالد بلحمر في مركز إدارة التقارير والنماذج
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-200/90 leading-relaxed">
+                                    من هنا يمكنك متابعة تقارير الفعاليات مع نائبة الرئيس <strong>نائبة اللجنة دانا الشمري</strong> وبقية الأعضاء، أو تصميم نماذج تسجيل احترافية مربوطة مباشرة بـ Google Sheets.
+                                </p>
+                                <div class="pt-2 flex flex-wrap gap-3">
+                                    <button onclick="switchTab('forms')" class="px-5 py-2.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-xs transition shadow-md">
+                                        <i class="fa-solid fa-wpforms ml-1"></i> فتح برنامج النماذج (Forms)
+                                    </button>
+                                    <button onclick="switchTab('dashboard')" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/15 transition">
+                                        استعراض سجل التقارير
+                                    </button>
+                                    <button onclick="replaySplash()" class="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/15 text-emerald-300 font-bold text-xs border border-emerald-400/20 transition">
+                                        <i class="fa-solid fa-wand-magic-sparkles ml-1"></i> عرض الشعار
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="bg-white/10 backdrop-blur-xs border border-white/15 rounded-2xl p-5 min-w-[220px] text-center space-y-2">
+                                <p class="text-xs text-emerald-200 font-bold">مؤشر إنجاز تقارير الفصل</p>
+                                <div class="text-4xl font-black text-emerald-400">94%</div>
+                                <p class="text-[11px] text-slate-300">تم تسليم 18 من أصل 19 تقريراً في موعدها</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- بطاقات الأرقام السريعة -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div onclick="switchTab('dashboard')" class="cursor-pointer bg-white dark:bg-darkcard p-5 rounded-2xl border border-slate-200/80 dark:border-white/10 hover:border-emerald-500 transition">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold text-slate-500">إجمالي التقارير</span>
+                                <span class="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-600 flex items-center justify-center"><i class="fa-solid fa-file-contract"></i></span>
+                            </div>
+                            <div id="statTotalReports" class="text-2xl font-black text-slate-900 dark:text-white">4</div>
+                            <p class="text-[11px] text-emerald-600 mt-1 font-bold">محدثة وموثقة باللجنة</p>
+                        </div>
+
+                        <div onclick="switchTab('forms'); setFormsSubView('responses');" class="cursor-pointer bg-white dark:bg-darkcard p-5 rounded-2xl border border-slate-200/80 dark:border-white/10 hover:border-emerald-500 transition">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold text-slate-500">المسجلون في الفورم</span>
+                                <span class="w-9 h-9 rounded-xl bg-blue-500/15 text-blue-600 flex items-center justify-center"><i class="fa-solid fa-user-check"></i></span>
+                            </div>
+                            <div id="statTotalResponses" class="text-2xl font-black text-slate-900 dark:text-white">3</div>
+                            <p class="text-[11px] text-blue-600 mt-1 font-bold">مربوط بـ Google Sheets</p>
+                        </div>
+
+                        <div onclick="switchTab('tasks')" class="cursor-pointer bg-white dark:bg-darkcard p-5 rounded-2xl border border-slate-200/80 dark:border-white/10 hover:border-emerald-500 transition">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold text-slate-500">المهام الجارية</span>
+                                <span class="w-9 h-9 rounded-xl bg-amber-500/15 text-amber-600 flex items-center justify-center"><i class="fa-solid fa-clock"></i></span>
+                            </div>
+                            <div class="text-2xl font-black text-slate-900 dark:text-white">5</div>
+                            <p class="text-[11px] text-amber-600 mt-1 font-bold">قيد المتابعة من الأعضاء</p>
+                        </div>
+
+                        <div onclick="switchTab('members')" class="cursor-pointer bg-white dark:bg-darkcard p-5 rounded-2xl border border-slate-200/80 dark:border-white/10 hover:border-emerald-500 transition">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold text-slate-500">فريق لجنة التقارير</span>
+                                <span class="w-9 h-9 rounded-xl bg-purple-500/15 text-purple-600 flex items-center justify-center"><i class="fa-solid fa-users"></i></span>
+                            </div>
+                            <div class="text-2xl font-black text-slate-900 dark:text-white">6 أعضاء</div>
+                            <p class="text-[11px] text-purple-600 mt-1 font-bold">بقيادة رئيس اللجنة خالد بلحمر</p>
+                        </div>
+                    </div>
+
+                    <!-- التعاميم والوصول السريع -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-white dark:bg-darkcard p-6 rounded-2xl border border-slate-200/80 dark:border-white/10 space-y-4">
+                            <h4 class="font-black text-base text-slate-900 dark:text-white flex items-center gap-2">
+                                <i class="fa-solid fa-bullhorn text-emerald-600"></i>
+                                <span>آخر تعاميم لجنة التقارير</span>
+                            </h4>
+                            <div class="space-y-3 text-xs">
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200/60 dark:border-white/10">
+                                    <div class="flex justify-between font-bold text-slate-900 dark:text-white mb-1">
+                                        <span>اعتماد نموذج التقرير الختامي الموحد</span>
+                                        <span class="text-emerald-600">جديد</span>
+                                    </div>
+                                    <p class="text-slate-500 dark:text-slate-400">وجه رئيس اللجنة خالد بلحمر برفع جميع تقارير الفعاليات خلال 48 ساعة من انتهاء كل فعالية.</p>
+                                </div>
+                                <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200/60 dark:border-white/10">
+                                    <div class="flex justify-between font-bold text-slate-900 dark:text-white mb-1">
+                                        <span>تفعيل الربط المباشر مع Google Sheets</span>
+                                        <span class="text-slate-400">مفعل</span>
+                                    </div>
+                                    <p class="text-slate-500 dark:text-slate-400">بإشراف نائبة اللجنة دانا الشمري، تم ربط نماذج التسجيل بجدول البيانات المركزي للنادي.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white dark:bg-darkcard p-6 rounded-2xl border border-slate-200/80 dark:border-white/10 space-y-4">
+                            <h4 class="font-black text-base text-slate-900 dark:text-white flex items-center gap-2">
+                                <i class="fa-solid fa-bolt text-emerald-600"></i>
+                                <span>اختصارات سريعة للأعضاء</span>
+                            </h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-bold">
+                                <button onclick="switchTab('forms'); setFormsSubView('builder');" class="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-900 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/40 text-right hover:bg-emerald-500 hover:text-slate-950 transition">
+                                    <i class="fa-solid fa-sliders text-base mb-2 block"></i>
+                                    إعداد أسئلة الفورم للنادي
+                                </button>
+                                <button onclick="switchTab('forms'); setFormsSubView('public');" class="p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-right hover:border-emerald-500 transition">
+                                    <i class="fa-solid fa-eye text-base mb-2 block text-emerald-600"></i>
+                                    معاينة صفحة تسجيل الطلاب
+                                </button>
+                                <button onclick="testWebhookConnection()" class="p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-right hover:border-emerald-500 transition">
+                                    <i class="fa-solid fa-cloud-arrow-up text-base mb-2 block text-emerald-600"></i>
+                                    إرسال صف تجريبي لـ Google Sheet
+                                </button>
+                                <button onclick="openShareFormModal()" class="p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-right hover:border-emerald-500 transition">
+                                    <i class="fa-solid fa-qrcode text-base mb-2 block text-emerald-600"></i>
+                                    نسخ رابط التسجيل ورمز QR
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================================= -->
+                <!-- 2. قسم لوحة التحكم والتقارير                              -->
+                <!-- ========================================================= -->
+                <section id="tab-dashboard" class="tab-content space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="lg:col-span-2 bg-white dark:bg-darkcard p-6 rounded-2xl border border-slate-200/80 dark:border-white/10">
+                            <h4 class="font-bold text-sm mb-4">معدل إنجاز وتسليم التقارير الشهرية</h4>
+                            <div class="h-64">
+                                <canvas id="reportsBarChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-darkcard p-6 rounded-2xl border border-slate-200/80 dark:border-white/10">
+                            <h4 class="font-bold text-sm mb-4">توزيع حالات التقارير</h4>
+                            <div class="h-64 flex items-center justify-center">
+                                <canvas id="reportsDoughnutChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- جدول التقارير -->
+                    <div class="bg-white dark:bg-darkcard rounded-2xl border border-slate-200/80 dark:border-white/10 overflow-hidden">
+                        <div class="p-5 border-b border-slate-100 dark:border-white/10 flex flex-wrap items-center justify-between gap-3">
+                            <div>
+                                <h4 class="font-black text-base text-slate-900 dark:text-white">سجل تقارير نادي الاقتصاد</h4>
+                                <p class="text-xs text-slate-500">إشراف: رئيس اللجنة خالد بلحمر ونائبة اللجنة دانا الشمري</p>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-2">
+                                <input type="text" id="reportSearchInput" oninput="renderReportsTable()" placeholder="ابحث عن تقرير أو عضو..." class="px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs">
+                                <select id="reportFilterStatus" onchange="renderReportsTable()" class="px-3 py-2 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-bold">
+                                    <option value="all">جميع الحالات</option>
+                                    <option value="معتمد">معتمد</option>
+                                    <option value="قيد المراجعة">قيد المراجعة</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-right text-xs sm:text-sm">
+                                <thead class="bg-slate-50 dark:bg-white/5 text-slate-500 dark:text-slate-400 font-bold">
+                                    <tr>
+                                        <th class="py-3.5 px-4">عنوان التقرير</th>
+                                        <th class="py-3.5 px-4">معد التقرير</th>
+                                        <th class="py-3.5 px-4">التاريخ</th>
+                                        <th class="py-3.5 px-4">الحالة</th>
+                                        <th class="py-3.5 px-4 text-center">إجراء</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reportsTableBody" class="divide-y divide-slate-100 dark:divide-white/5"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ========================================================= -->
+                <!-- 3. قسم صانع النماذج والتسجيل المربوط بـ Google Sheets     -->
+                <!-- ========================================================= -->
+                <section id="tab-forms" class="tab-content space-y-6">
+
+                    <!-- شريط التحكم لعضو اللجنة -->
+                    <div id="formsAdminToolbar" class="bg-white dark:bg-darkcard p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-white/10 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button onclick="setFormsSubView('builder')" id="subbtn-builder" class="px-4 py-2.5 rounded-xl text-xs font-black bg-club text-white transition flex items-center gap-2">
+                                <i class="fa-solid fa-sliders text-emerald-400"></i>
+                                <span>1. بوابة الأعضاء (إعداد الأسئلة)</span>
+                            </button>
+                            <button onclick="setFormsSubView('public')" id="subbtn-public" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-200 transition flex items-center gap-2">
+                                <i class="fa-solid fa-id-card"></i>
+                                <span>2. واجهة تسجيل النادي (المعاينة)</span>
+                            </button>
+                            <button onclick="setFormsSubView('responses')" id="subbtn-responses" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-200 transition flex items-center gap-2">
+                                <i class="fa-solid fa-table"></i>
+                                <span>3. جدول المسجلين (<span id="responsesCountBadge">3</span>)</span>
+                            </button>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button onclick="openShareFormModal()" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs transition flex items-center gap-2 shadow-sm">
+                                <i class="fa-solid fa-share-nodes"></i>
+                                <span>إرسال الفورم للنادي (رابط / QR)</span>
+                            </button>
+                            <button onclick="enterStandalonePublicMode()" class="px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-white/10 text-xs font-bold hover:bg-slate-200 transition" title="عرض صفحة التسجيل وحدها بدون قوائم اللجنة">
+                                <i class="fa-solid fa-expand ml-1"></i> وضع المسجلين المستقل
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- شريط القوالب الجاهزة -->
+                    <div id="formsPresetsBar" class="bg-white dark:bg-darkcard p-4 rounded-2xl border border-slate-200/80 dark:border-white/10 flex flex-wrap items-center justify-between gap-3">
+                        <span class="text-xs font-bold text-slate-600 dark:text-slate-300">
+                            <i class="fa-solid fa-wand-magic-sparkles text-emerald-600 ml-1"></i> قوالب جاهزة لنادي الاقتصاد (تعبئة بضغطة زر):
+                        </span>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="loadFormPreset('membership')" class="px-3.5 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/40 text-xs font-bold hover:bg-emerald-500 hover:text-slate-950 transition">
+                                قالب تسجيل عضوية النادي
+                            </button>
+                            <button onclick="loadFormPreset('event')" class="px-3.5 py-1.5 rounded-xl bg-slate-100 dark:bg-white/5 text-xs font-bold hover:bg-emerald-500 hover:text-slate-950 transition">
+                                قالب التسجيل في فعالية / لقاء
+                            </button>
+                            <button onclick="loadFormPreset('survey')" class="px-3.5 py-1.5 rounded-xl bg-slate-100 dark:bg-white/5 text-xs font-bold hover:bg-emerald-500 hover:text-slate-950 transition">
+                                قالب تقييم فعالية (لجنة التقارير)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- (أ) واجهة إعداد الأسئلة والربط مع Google Sheets -->
+                    <div id="forms-view-builder" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+                        <!-- العمود الأيمن: إعدادات الفورم والربط وإضافة سؤال -->
+                        <div class="lg:col-span-5 space-y-5">
+                            <!-- إعدادات العنوان والربط بـ Google Sheet -->
+                            <div class="bg-white dark:bg-darkcard p-5 rounded-2xl border border-slate-200/80 dark:border-white/10 space-y-4">
+                                <div class="flex items-center justify-between border-b border-slate-100 dark:border-white/10 pb-3">
+                                    <h4 class="font-black text-sm text-slate-900 dark:text-white">إعدادات الفورم وربط Google Sheets</h4>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-bold">مربوط وجاهز</span>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold mb-1 text-slate-600 dark:text-slate-300">عنوان النموذج</label>
+                                    <input type="text" id="builderFormTitle" oninput="updateFormMeta()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs sm:text-sm font-bold">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold mb-1 text-slate-600 dark:text-slate-300">وصف النموذج للمسجلين</label>
+                                    <textarea id="builderFormDesc" rows="2" oninput="updateFormMeta()" class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs"></textarea>
+                                </div>
+
+                                <div class="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25 space-y-2.5">
+                                    <div class="flex items-center justify-between">
+                                        <label class="text-xs font-black text-emerald-900 dark:text-emerald-300 flex items-center gap-1.5">
+                                            <i class="fa-solid fa-link"></i>
+                                            <span>رابط Google Apps Script (Web App URL)</span>
+                                        </label>
+                                        <button onclick="openSheetGuideModal()" class="text-[11px] font-bold underline text-emerald-700 dark:text-emerald-400">عرض كود الشيت</button>
+                                    </div>
+                                    <input type="url" id="builderWebhookUrl" oninput="updateFormMeta()" dir="ltr" class="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-emerald-500/30 text-[11px] font-mono">
+                                    <div class="flex flex-wrap gap-2 pt-1">
+                                        <button type="button" onclick="testWebhookConnection()" id="testSheetBtn" class="flex-1 py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition flex items-center justify-center gap-1.5 shadow-xs">
+                                            <i class="fa-solid fa-paper-plane"></i>
+                                            <span>إرسال صف تجريبي للشيت الآن</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- صندوق إضافة سؤال جديد أو حقول سريعة -->
+                            <div class="bg-white dark:bg-darkcard p-5 rounded-2xl border border-slate-200/80 dark:border-white/10 space-y-4">
+                                <h4 class="font-black text-sm text-slate-900 dark:text-white border-b border-slate-100 dark:border-white/10 pb-3">
+                                    إضافة أسئلة للفورم
+                                </h4>
+
+                                <!-- أزرار إضافة سريعة بضغطة واحدة -->
+                                <div>
+                                    <p class="text-[11px] text-slate-500 mb-2 font-bold">إضافة حقل جاهز بضغطة زر:</p>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        <button type="button" onclick="quickAddField('الاسم الثلاثي', 'text', 'اكتب اسمك الثلاثي كاملاً', true)" class="px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-white/10 hover:bg-emerald-500 hover:text-slate-950 text-xs font-bold transition">+ الاسم</button>
+                                        <button type="button" onclick="quickAddField('رقم الجوال', 'tel', '05XXXXXXXX', true)" class="px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-white/10 hover:bg-emerald-500 hover:text-slate-950 text-xs font-bold transition">+ الجوال</button>
+                                        <button type="button" onclick="quickAddField('البريد الإلكتروني', 'email', 'example@email.com', true)" class="px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-white/10 hover:bg-emerald-500 hover:text-slate-950 text-xs font-bold transition">+ الإيميل</button>
+                                        <button type="button" onclick="quickAddField('الرقم الجامعي', 'text', '44XXXXXXXX', true)" class="px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-white/10 hover:bg-emerald-500 hover:text-slate-950 text-xs font-bold transition">+ الرقم الجامعي</button>
+                                        <button type="button" onclick="quickAddField('التخصص الأكاديمي', 'text', 'مثال: اقتصاد، مالية، محاسبة', true)" class="px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-white/10 hover:bg-emerald-500 hover:text-slate-950 text-xs font-bold transition">+ التخصص</button>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-slate-100 dark:border-white/10 pt-3 space-y-3">
+                                    <div>
+                                        <label class="block text-xs font-bold mb-1">عنوان السؤال الجديد</label>
+                                        <input type="text" id="newQLabel" placeholder="مثال: ما هي اللجنة التي ترغب بالانضمام إليها؟" class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs">
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-2.5">
+                                        <div>
+                                            <label class="block text-xs font-bold mb-1">نوع الإجابة</label>
+                                            <select id="newQType" onchange="toggleNewQOptions()" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-bold">
+                                                <option value="text">نص قصير</option>
+                                                <option value="tel">رقم جوال</option>
+                                                <option value="email">بريد إلكتروني</option>
+                                                <option value="select">قائمة منسدلة</option>
+                                                <option value="radio">اختيار متعدد</option>
+                                                <option value="textarea">فقرة مفتوحة</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold mb-1">نص توضيحي (اختياري)</label>
+                                            <input type="text" id="newQPlaceholder" placeholder="مثال: اكتب إجابتك هنا..." class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs">
+                                        </div>
+                                    </div>
+
+                                    <div id="newQOptionsBox" class="hidden">
+                                        <label class="block text-xs font-bold mb-1">الخيارات (افصل بينها بفاصلة ،)</label>
+                                        <input type="text" id="newQOptions" placeholder="لجنة التقارير، لجنة البرامج، لجنة العلاقات العامة" class="w-full px-3.5 py-2 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs">
+                                    </div>
+
+                                    <label class="flex items-center gap-2 text-xs font-bold cursor-pointer">
+                                        <input type="checkbox" id="newQRequired" checked class="rounded text-emerald-600">
+                                        <span>سؤال إجباري للمسجل</span>
+                                    </label>
+
+                                    <button type="button" onclick="addQuestionFromBuilder()" class="w-full py-2.5 rounded-xl bg-club dark:bg-emerald-500 text-white dark:text-slate-950 font-black text-xs hover:opacity-95 transition">
+                                        + إدراج السؤال في الفورم
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- العمود الأيسر: قائمة الأسئلة الحالية -->
+                        <div class="lg:col-span-7 bg-white dark:bg-darkcard p-5 sm:p-6 rounded-2xl border border-slate-200/80 dark:border-white/10 space-y-4">
+                            <div class="flex items-center justify-between border-b border-slate-100 dark:border-white/10 pb-3">
+                                <div>
+                                    <h4 class="font-black text-base text-slate-900 dark:text-white">أسئلة الفورم الحالية (<span id="builderQuestionsCount">0</span>)</h4>
+                                    <p class="text-xs text-slate-500">يمكنك ترتيب الأسئلة أو حذف أي سؤال قبل إرسال الرابط للنادي</p>
+                                </div>
+                                <button onclick="setFormsSubView('public')" class="px-3.5 py-1.5 rounded-xl bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 text-xs font-bold hover:bg-emerald-500 hover:text-slate-950 transition">
+                                    معاينة الفورم ←
+                                </button>
+                            </div>
+
+                            <div id="builderQuestionsList" class="space-y-3"></div>
+                        </div>
+                    </div>
+
+                    <!-- (ب) واجهة التسجيل العامة لأعضاء النادي -->
+                    <div id="forms-view-public" class="hidden">
+                        <div id="standaloneExitBar" class="hidden max-w-2xl mx-auto mb-4 p-3 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-between text-xs">
+                            <span class="font-bold text-amber-800 dark:text-amber-300">أنت تشاهد الآن واجهة التسجيل المستقلة كما ستظهر لأعضاء النادي تماماً.</span>
+                            <button onclick="exitStandalonePublicMode()" class="px-3 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-black">العودة للوحة اللجنة</button>
+                        </div>
+
+                        <div class="max-w-2xl mx-auto">
+                            <div id="publicFormCard" class="bg-white dark:bg-darkcard rounded-3xl shadow-xl border border-slate-200/90 dark:border-white/10 overflow-hidden">
+                                <!-- هيدر الفورم بشعار نادي الاقتصاد -->
+                                <div class="bg-gradient-to-l from-club to-clubLight p-7 sm:p-9 text-white">
+                                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+                                        <div class="space-y-2">
+                                            <span class="inline-block px-3 py-1 rounded-full bg-emerald-400/15 border border-emerald-400/30 text-emerald-300 text-xs font-bold">
+                                                نادي الاقتصاد | Economic Club
+                                            </span>
+                                            <h2 id="publicFormTitleText" class="text-2xl sm:text-3xl font-black leading-snug"></h2>
+                                            <p id="publicFormDescText" class="text-xs sm:text-sm text-slate-200/90 leading-relaxed"></p>
+                                        </div>
+                                        <div class="w-16 h-16 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center shrink-0">
+                                            <svg viewBox="0 0 60 60" class="w-10 h-10">
+                                                <rect x="6" y="34" width="7" height="18" fill="#ffffff" rx="1"/>
+                                                <rect x="6" y="10" width="7" height="17" fill="#10b981" rx="1"/>
+                                                <rect x="19" y="18" width="7" height="34" fill="#ffffff" rx="1"/>
+                                                <rect x="32" y="28" width="7" height="24" fill="#ffffff" rx="1"/>
+                                                <rect x="45" y="10" width="7" height="42" fill="#ffffff" rx="1"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- حقول الفورم التي يملؤها العضو/الطالب -->
+                                <form id="clubPublicRegistrationForm" onsubmit="handlePublicFormSubmit(event)" class="p-6 sm:p-9 space-y-5">
+                                    <div id="publicFormFieldsContainer" class="space-y-5"></div>
+
+                                    <div class="pt-4">
+                                        <button type="submit" id="publicSubmitBtn" class="w-full py-4 rounded-2xl bg-club dark:bg-emerald-500 text-white dark:text-slate-950 font-black text-sm sm:text-base shadow-lg hover:opacity-95 transition flex items-center justify-center gap-2">
+                                            <span>إرسال وتأكيد التسجيل</span>
+                                            <i class="fa-solid fa-paper-plane text-xs"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- بطاقة النجاح بعد التسجيل -->
+                            <div id="publicFormSuccessBox" class="hidden bg-white dark:bg-darkcard rounded-3xl shadow-xl border border-slate-200 dark:border-white/10 p-10 text-center space-y-5">
+                                <div class="w-20 h-20 rounded-full bg-emerald-500/15 text-emerald-600 flex items-center justify-center mx-auto text-3xl">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div class="space-y-2">
+                                    <h3 class="text-2xl font-black text-slate-900 dark:text-white">تم تسجيل بياناتك بنجاح!</h3>
+                                    <p class="text-xs sm:text-sm text-slate-500 max-w-md mx-auto">
+                                        شكراً لتسجيلك في نادي الاقتصاد. تم حفظ إجابتك وترحيلها مباشرة إلى سجل لجنة التقارير (Google Sheets).
+                                    </p>
+                                </div>
+                                <button type="button" onclick="resetPublicClubForm()" class="px-6 py-2.5 rounded-xl bg-slate-100 dark:bg-white/10 font-bold text-xs">
+                                    إرسال تسجيل آخر
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- (ج) واجهة جدول المسجلين وتصدير Google Sheets -->
+                    <div id="forms-view-responses" class="hidden space-y-5">
+                        <div class="bg-white dark:bg-darkcard rounded-2xl border border-slate-200/80 dark:border-white/10 overflow-hidden">
+                            <div class="p-5 border-b border-slate-100 dark:border-white/10 flex flex-wrap items-center justify-between gap-3">
+                                <div>
+                                    <h4 class="font-black text-base text-slate-900 dark:text-white">جدول المسجلين (المربوط بـ Google Sheets)</h4>
+                                    <p class="text-xs text-slate-500">جميع الردود المسجلة تُرحّل تلقائياً إلى رابط الشيت وتظهر هنا</p>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <button onclick="testWebhookConnection()" class="px-3.5 py-2 rounded-xl bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30 text-xs font-bold flex items-center gap-1.5">
+                                        <i class="fa-solid fa-bolt"></i>
+                                        <span>إرسال صف تجريبي للشيت</span>
+                                    </button>
+                                    <button onclick="openSheetGuideModal()" class="px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-white/10 text-xs font-bold flex items-center gap-1.5">
+                                        <i class="fa-solid fa-code text-emerald-600"></i>
+                                        <span>كود Google Apps Script</span>
+                                    </button>
+                                    <button onclick="exportResponsesToCSV()" class="px-3.5 py-2 rounded-xl bg-emerald-500 text-slate-950 text-xs font-black flex items-center gap-1.5">
+                                        <i class="fa-solid fa-file-excel"></i>
+                                        <span>تصدير Excel (CSV)</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-right text-xs sm:text-sm">
+                                    <thead id="responsesTableHead" class="bg-slate-50 dark:bg-white/5 text-slate-500 dark:text-slate-400 font-bold"></thead>
+                                    <tbody id="responsesTableBody" class="divide-y divide-slate-100 dark:divide-white/5"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- ========================================================= -->
+                <!-- 4. قسم سير المهام (Kanban)                                -->
+                <!-- ========================================================= -->
+                <section id="tab-tasks" class="tab-content space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5" id="kanbanContainer"></div>
+                </section>
+
+                <!-- ========================================================= -->
+                <!-- 5. قسم دليل أعضاء اللجنة                                  -->
+                <!-- ========================================================= -->
+                <section id="tab-members" class="tab-content space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="membersGrid"></div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- نافذة إضافة تقرير جديد -->
+    <div id="reportModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/70 backdrop-blur-xs">
+        <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-white/10 rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
+            <div class="flex items-center justify-between border-b border-slate-100 dark:border-white/10 pb-3">
+                <h3 class="font-black text-base">إضافة تقرير جديد للجنة</h3>
+                <button onclick="closeReportModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form onsubmit="submitNewReport(event)" class="space-y-3.5">
+                <div>
+                    <label class="block text-xs font-bold mb-1">عنوان التقرير أو الفعالية</label>
+                    <input type="text" id="newRepTitle" required placeholder="مثال: التقرير الختامي لندوة الاستثمار" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs sm:text-sm">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold mb-1">معد التقرير</label>
+                        <select id="newRepAuthor" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs sm:text-sm font-bold">
+                            <option value="رئيس اللجنة خالد بلحمر">رئيس اللجنة خالد بلحمر</option>
+                            <option value="نائبة اللجنة دانا الشمري">نائبة اللجنة دانا الشمري</option>
+                            <option value="عضو اللجنة فهد الدوسري">عضو اللجنة فهد الدوسري</option>
+                            <option value="عضو اللجنة نورة الشهري">عضو اللجنة نورة الشهري</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold mb-1">الحالة</label>
+                        <select id="newRepStatus" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs sm:text-sm font-bold">
+                            <option value="معتمد">معتمد</option>
+                            <option value="قيد المراجعة">قيد المراجعة</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="pt-2 flex gap-2">
+                    <button type="submit" class="flex-1 py-2.5 rounded-xl bg-club dark:bg-emerald-500 text-white dark:text-slate-950 font-black text-xs">حفظ التقرير</button>
+                    <button type="button" onclick="closeReportModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-white/10 text-xs font-bold">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- نافذة مشاركة الرابط و QR Code -->
+    <div id="shareFormModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/70 backdrop-blur-xs">
+        <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-white/10 rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl text-center">
+            <div class="flex items-center justify-between border-b border-slate-100 dark:border-white/10 pb-3">
+                <h3 class="font-black text-base">نشر الفورم لأعضاء نادي الاقتصاد</h3>
+                <button onclick="closeShareFormModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">
+                عند فتح الطالب لهذا الرابط، ستفتح له <strong>صفحة التسجيل الاحترافية فقط</strong> وتُحفظ إجابته مباشرة في Google Sheets.
+            </p>
+            <div class="p-4 bg-white rounded-2xl border border-slate-200 inline-block mx-auto">
+                <img id="shareQrImg" src="" alt="QR Code" class="w-40 h-40 mx-auto" onerror="this.style.display='none'">
+            </div>
+            <div class="flex gap-2">
+                <input type="text" id="shareFormUrlInput" readonly dir="ltr" class="flex-1 px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-mono">
+                <button onclick="copyShareFormLink()" class="px-4 py-2.5 rounded-xl bg-emerald-500 text-slate-950 font-black text-xs shrink-0">
+                    نسخ الرابط
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة كود Google Apps Script الجاهز -->
+    <div id="sheetGuideModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/70 backdrop-blur-xs">
+        <div class="bg-white dark:bg-darkcard border border-slate-200 dark:border-white/10 rounded-3xl max-w-2xl w-full p-6 space-y-4 shadow-2xl">
+            <div class="flex items-center justify-between border-b border-slate-100 dark:border-white/10 pb-3">
+                <h3 class="font-black text-base">كود Google Apps Script الموحد (انسخه في الشيت)</h3>
+                <button onclick="closeSheetGuideModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 leading-relaxed">
+                <p>1. من داخل ملف Google Sheet اختر <strong>Extensions &gt; Apps Script</strong> والصق هذا الكود مكان أي كود سابق ثم اضغط حفظ 💾.</p>
+                <p>2. اضغط <strong>Deploy &gt; Manage deployments &gt; تعديل ✏️ &gt; New version</strong> وتأكد أن <strong>Who has access = Anyone</strong>.</p>
+            </div>
+            <pre id="appsScriptCodeBlock" dir="ltr" class="p-4 rounded-2xl bg-slate-950 text-emerald-300 text-[11px] font-mono overflow-x-auto max-h-64 leading-relaxed text-left">function doPost(e) {
+  var lock = LockService.getScriptLock();
+  lock.tryLock(10000);
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var body = {};
+    if (e.postData && e.postData.contents) {
+      try { body = JSON.parse(e.postData.contents); } catch(err) {}
+    }
+    var params = e.parameter || {};
+    var answers = body.answers || body.customAnswers || body;
+
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(["التاريخ والوقت", "عنوان النموذج", "الاسم الثلاثي", "رقم الجوال", "البريد الإلكتروني", "الرقم الجامعي", "جميع الإجابات"]);
+    }
+
+    var row = [
+      new Date().toLocaleString("ar-SA", { timeZone: "Asia/Riyadh" }),
+      body.formTitle || params.formTitle || "نموذج نادي الاقتصاد",
+      body.fullName || answers["الاسم الثلاثي"] || params.fullName || "",
+      "'" + (body.phone || answers["رقم الجوال"] || params.phone || ""),
+      body.email || answers["البريد الإلكتروني"] || params.email || "",
+      body.studentId || answers["الرقم الجامعي"] || params.studentId || "",
+      JSON.stringify(answers)
+    ];
+    sheet.appendRow(row);
+    return ContentService.createTextOutput(JSON.stringify({ status: "success" })).setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    lock.releaseLock();
+  }
+}</pre>
+            <div class="flex justify-end gap-2">
+                <button onclick="copyAppsScriptCode()" class="px-4 py-2 rounded-xl bg-emerald-500 text-slate-950 font-black text-xs">نسخ الكود بالكامل</button>
+                <button onclick="closeSheetGuideModal()" class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-white/10 font-bold text-xs">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- إشعار Toast عائم -->
+    <div id="toastBox" class="fixed bottom-5 left-5 z-50 hidden px-5 py-3.5 rounded-2xl bg-club text-white text-xs font-bold shadow-2xl border border-emerald-500/40 items-center gap-2.5">
+        <i class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toastText"></span>
+    </div>
+
+    <script>
+        // الرابط الفعلي الخاص بالمستخدم لـ Google Apps Script
+        const DEFAULT_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwTlCySnOY1VFfbzHU7JjpiayV28SD2SAAemjxd-oNYpiHOq6kMIQeTk9j_NUCuiJ0F/exec";
+
+        // 1. بيانات التقارير
+        let reportsData = [
+            { id: 1, title: 'التقرير الختامي لملتقى الاستثمار الطلابي', author: 'رئيس اللجنة خالد بلحمر', date: '2026-10-12', status: 'معتمد' },
+            { id: 2, title: 'تقرير مؤشرات أداء لجان نادي الاقتصاد للربع الأول', author: 'نائبة اللجنة دانا الشمري', date: '2026-10-10', status: 'معتمد' },
+            { id: 3, title: 'تقرير تقييم ورشة التحليل المالي والميزانيات', author: 'عضو اللجنة فهد الدوسري', date: '2026-10-08', status: 'قيد المراجعة' },
+            { id: 4, title: 'حصر مخرجات استبيان اللقاء التعريفي للنادي', author: 'عضو اللجنة نورة الشهري', date: '2026-10-05', status: 'معتمد' }
+        ];
+
+        // 2. بيانات المهام (Kanban)
+        let tasksData = [
+            { id: 101, title: 'مراجعة التقرير الختامي لفعالية الوعي المالي', assignee: 'رئيس اللجنة خالد بلحمر', stage: 'todo' },
+            { id: 102, title: 'مطابقة كشوف المسجلين في Google Sheets', assignee: 'نائبة اللجنة دانا الشمري', stage: 'doing' },
+            { id: 103, title: 'تصميم استبانة قياس رضا الأعضاء الجدد', assignee: 'عضو اللجنة نورة الشهري', stage: 'doing' },
+            { id: 104, title: 'رفع التقرير الشهري لإدارة نادي الاقتصاد', assignee: 'رئيس اللجنة خالد بلحمر', stage: 'done' }
+        ];
+
+        // 3. بيانات أعضاء اللجنة
+        const membersList = [
+            { name: 'رئيس اللجنة خالد بلحمر', role: 'رئيس لجنة التقارير', reports: 14, badge: 'خب' },
+            { name: 'نائبة اللجنة دانا الشمري', role: 'نائبة رئيس لجنة التقارير', reports: 11, badge: 'دش' },
+            { name: 'عضو اللجنة فهد الدوسري', role: 'مسؤول التدقيق والتوثيق', reports: 8, badge: 'فد' },
+            { name: 'عضو اللجنة نورة الشهري', role: 'مسؤولة الاستبيانات والنماذج', reports: 9, badge: 'نش' },
+            { name: 'عضو اللجنة ريان العتيبي', role: 'محلل بيانات الفعاليات', reports: 7, badge: 'رع' },
+            { name: 'عضو اللجنة سارة القحطاني', role: 'عضو صياغة التقارير', reports: 6, badge: 'سق' }
+        ];
+
+        // 4. إعدادات نموذج التسجيل الافتراضية
+        let clubFormConfig = {
+            title: 'نموذج التسجيل في عضوية وفعاليات نادي الاقتصاد',
+            description: 'أهلاً بك في نادي الاقتصاد. يرجى تعبئة بياناتك بدقة ليتم التواصل معك من قبل لجنة التقارير واللجان المعنية.',
+            webhookUrl: DEFAULT_WEBHOOK_URL,
+            questions: [
+                { id: 'q_name', label: 'الاسم الثلاثي', type: 'text', placeholder: 'اكتب اسمك الثلاثي كاملاً', required: true, options: [] },
+                { id: 'q_phone', label: 'رقم الجوال', type: 'tel', placeholder: '05XXXXXXXX', required: true, options: [] },
+                { id: 'q_email', label: 'البريد الإلكتروني', type: 'email', placeholder: 'example@email.com', required: true, options: [] },
+                { id: 'q_uni', label: 'الرقم الجامعي', type: 'text', placeholder: '44XXXXXXXX', required: true, options: [] },
+                { id: 'q_comm', label: 'اللجنة التي ترغب بالانضمام إليها', type: 'select', placeholder: '', required: true, options: ['لجنة التقارير', 'لجنة البرامج والفعاليات', 'لجنة العلاقات العامة', 'لجنة الإعلام والتسويق'] }
+            ]
+        };
+
+        // 5. سجل المسجلين الابتدائي
+        let formResponsesData = [
+            {
+                timestamp: '2026-10-14 08:30',
+                answers: {
+                    'الاسم الثلاثي': 'عبدالله محمد الغامدي',
+                    'رقم الجوال': '0551234567',
+                    'البريد الإلكتروني': 'abdullah@example.com',
+                    'الرقم الجامعي': '445019283',
+                    'اللجنة التي ترغب بالانضمام إليها': 'لجنة التقارير'
+                }
+            },
+            {
+                timestamp: '2026-10-14 08:45',
+                answers: {
+                    'الاسم الثلاثي': 'فيصل سعد الحربي',
+                    'رقم الجوال': '0509876543',
+                    'البريد الإلكتروني': 'faisal@example.com',
+                    'الرقم الجامعي': '445099112',
+                    'اللجنة التي ترغب بالانضمام إليها': 'لجنة البرامج والفعاليات'
+                }
+            },
+            {
+                timestamp: '2026-10-14 09:00',
+                answers: {
+                    'الاسم الثلاثي': 'ريم عبدالعزيز المالكي',
+                    'رقم الجوال': '0543219876',
+                    'البريد الإلكتروني': 'reem@example.com',
+                    'الرقم الجامعي': '446011223',
+                    'اللجنة التي ترغب بالانضمام إليها': 'لجنة التقارير'
+                }
+            }
+        ];
+
+        // تشغيل شاشة تفكك الشعار عند فتح الموقع
+        function runInitialSplash() {
+            const splash = document.getElementById('splash-screen');
+            if (!splash) return;
+            setTimeout(() => {
+                splash.classList.add('disintegrate');
+            }, 900);
+            setTimeout(() => {
+                splash.classList.add('hidden-splash');
+            }, 2100);
+        }
+
+        function replaySplash() {
+            const splash = document.getElementById('splash-screen');
+            splash.classList.remove('hidden-splash', 'disintegrate');
+            setTimeout(() => {
+                splash.classList.add('disintegrate');
+            }, 700);
+            setTimeout(() => {
+                splash.classList.add('hidden-splash');
+            }, 1900);
+        }
+
+        // التنقل بين الأقسام الرئيسية
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(sec => sec.classList.remove('active'));
+            const target = document.getElementById('tab-' + tabId);
+            if (target) target.classList.add('active');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.className = "nav-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-bold text-slate-300 hover:bg-white/10 transition";
+            });
+            const activeBtn = document.getElementById('nav-' + tabId);
+            if (activeBtn) {
+                activeBtn.className = "nav-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-bold bg-emerald-500 text-slate-950 transition";
+            }
+
+            const titles = {
+                home: 'الرئيسية — بوابة لجنة التقارير',
+                dashboard: 'لوحة التحكم وسجل التقارير',
+                forms: 'صانع النماذج والتسجيل (Google Sheets)',
+                tasks: 'إدارة المهام وسير العمل (Kanban)',
+                members: 'دليل أعضاء لجنة التقارير'
+            };
+            document.getElementById('pageHeaderTitle').textContent = titles[tabId] || 'بوابة لجنة التقارير';
+        }
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        function showToast(msg) {
+            const box = document.getElementById('toastBox');
+            document.getElementById('toastText').textContent = msg;
+            box.classList.remove('hidden');
+            box.classList.add('flex');
+            setTimeout(() => {
+                box.classList.add('hidden');
+                box.classList.remove('flex');
+            }, 3800);
+        }
+
+        // رسم جدول التقارير
+        function renderReportsTable() {
+            const tbody = document.getElementById('reportsTableBody');
+            const search = (document.getElementById('reportSearchInput')?.value || '').trim().toLowerCase();
+            const statusFilter = document.getElementById('reportFilterStatus')?.value || 'all';
+
+            const filtered = reportsData.filter(r => {
+                const matchSearch = r.title.toLowerCase().includes(search) || r.author.toLowerCase().includes(search);
+                const matchStatus = statusFilter === 'all' || r.status === statusFilter;
+                return matchSearch && matchStatus;
+            });
+
+            document.getElementById('statTotalReports').textContent = reportsData.length;
+
+            tbody.innerHTML = filtered.map(r => `
+                <tr class="hover:bg-slate-50/80 dark:hover:bg-white/5 transition">
+                    <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">${r.title}</td>
+                    <td class="py-3.5 px-4 text-slate-600 dark:text-slate-300">${r.author}</td>
+                    <td class="py-3.5 px-4 text-slate-500">${r.date}</td>
+                    <td class="py-3.5 px-4">
+                        <span class="px-2.5 py-1 rounded-full text-[11px] font-bold ${r.status === 'معتمد' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300' : 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300'}">
+                            ${r.status}
+                        </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center">
+                        <button onclick="toggleReportStatus(${r.id})" class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-white/10 hover:bg-emerald-500 hover:text-slate-950 text-xs font-bold transition">
+                            تبديل الحالة
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function toggleReportStatus(id) {
+            const rep = reportsData.find(r => r.id === id);
+            if (!rep) return;
+            rep.status = rep.status === 'معتمد' ? 'قيد المراجعة' : 'معتمد';
+            renderReportsTable();
+            showToast('تم تحديث حالة التقرير بنجاح');
+        }
+
+        function openReportModal() {
+            const m = document.getElementById('reportModal');
+            m.classList.remove('hidden');
+            m.classList.add('flex');
+        }
+
+        function closeReportModal() {
+            const m = document.getElementById('reportModal');
+            m.classList.add('hidden');
+            m.classList.remove('flex');
+        }
+
+        function submitNewReport(e) {
+            e.preventDefault();
+            const title = document.getElementById('newRepTitle').value.trim();
+            const author = document.getElementById('newRepAuthor').value;
+            const status = document.getElementById('newRepStatus').value;
+            if (!title) return;
+            const today = new Date().toISOString().split('T')[0];
+            reportsData.unshift({ id: Date.now(), title, author, date: today, status });
+            renderReportsTable();
+            closeReportModal();
+            e.target.reset();
+            showToast('تمت إضافة التقرير الجديد بنجاح!');
+        }
+
+        // إدارة قسم صانع النماذج (Forms)
+        function setFormsSubView(view) {
+            ['builder', 'public', 'responses'].forEach(v => {
+                document.getElementById('forms-view-' + v).classList.toggle('hidden', v !== view);
+                const btn = document.getElementById('subbtn-' + v);
+                if (btn) {
+                    btn.className = v === view
+                        ? "px-4 py-2.5 rounded-xl text-xs font-black bg-club text-white transition flex items-center gap-2"
+                        : "px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-200 transition flex items-center gap-2";
+                }
+            });
+            if (view === 'public') renderPublicClubForm();
+            if (view === 'responses') renderResponsesTable();
+        }
+
+        function persistFormState() {
+            try {
+                localStorage.setItem('ec_club_forms_v3', JSON.stringify(clubFormConfig));
+                localStorage.setItem('ec_club_responses_v3', JSON.stringify(formResponsesData));
+            } catch (err) {}
+        }
+
+        function loadPersistedFormState() {
+            try {
+                const savedCfg = localStorage.getItem('ec_club_forms_v3');
+                if (savedCfg) {
+                    const parsed = JSON.parse(savedCfg);
+                    clubFormConfig = { ...clubFormConfig, ...parsed };
+                    if (!clubFormConfig.webhookUrl) clubFormConfig.webhookUrl = DEFAULT_WEBHOOK_URL;
+                }
+                const savedResp = localStorage.getItem('ec_club_responses_v3');
+                if (savedResp) formResponsesData = JSON.parse(savedResp);
+            } catch (err) {}
+
+            document.getElementById('builderFormTitle').value = clubFormConfig.title;
+            document.getElementById('builderFormDesc').value = clubFormConfig.description;
+            document.getElementById('builderWebhookUrl').value = clubFormConfig.webhookUrl || DEFAULT_WEBHOOK_URL;
+        }
+
+        function updateFormMeta() {
+            clubFormConfig.title = document.getElementById('builderFormTitle').value;
+            clubFormConfig.description = document.getElementById('builderFormDesc').value;
+            clubFormConfig.webhookUrl = document.getElementById('builderWebhookUrl').value.trim();
+            persistFormState();
+            renderPublicClubForm();
+        }
+
+        function toggleNewQOptions() {
+            const type = document.getElementById('newQType').value;
+            const box = document.getElementById('newQOptionsBox');
+            box.classList.toggle('hidden', !(type === 'select' || type === 'radio'));
+        }
+
+        function quickAddField(label, type, placeholder, required) {
+            clubFormConfig.questions.push({
+                id: 'q_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
+                label,
+                type,
+                placeholder,
+                required,
+                options: []
+            });
+            persistFormState();
+            renderBuilderQuestions();
+            renderPublicClubForm();
+            showToast(`تمت إضافة حقل "${label}" إلى الفورم`);
+        }
+
+        function addQuestionFromBuilder() {
+            const label = document.getElementById('newQLabel').value.trim();
+            const type = document.getElementById('newQType').value;
+            const placeholder = document.getElementById('newQPlaceholder').value.trim();
+            const rawOpts = document.getElementById('newQOptions').value;
+            const required = document.getElementById('newQRequired').checked;
+
+            if (!label) {
+                showToast('يرجى كتابة عنوان السؤال أولاً');
+                return;
+            }
+
+            let options = [];
+            if (type === 'select' || type === 'radio') {
+                options = rawOpts.split(/[,،]/).map(s => s.trim()).filter(Boolean);
+                if (options.length === 0) {
+                    showToast('يرجى كتابة الخيارات مفصولة بفاصلة');
+                    return;
+                }
+            }
+
+            clubFormConfig.questions.push({
+                id: 'q_' + Date.now(),
+                label,
+                type,
+                placeholder,
+                required,
+                options
+            });
+
+            document.getElementById('newQLabel').value = '';
+            document.getElementById('newQPlaceholder').value = '';
+            document.getElementById('newQOptions').value = '';
+            persistFormState();
+            renderBuilderQuestions();
+            renderPublicClubForm();
+            showToast('تم إدراج السؤال في الفورم بنجاح');
+        }
+
+        function removeFormQuestion(id) {
+            clubFormConfig.questions = clubFormConfig.questions.filter(q => q.id !== id);
+            persistFormState();
+            renderBuilderQuestions();
+            renderPublicClubForm();
+        }
+
+        function moveFormQuestion(index, dir) {
+            const target = index + dir;
+            if (target < 0 || target >= clubFormConfig.questions.length) return;
+            const temp = clubFormConfig.questions[index];
+            clubFormConfig.questions[index] = clubFormConfig.questions[target];
+            clubFormConfig.questions[target] = temp;
+            persistFormState();
+            renderBuilderQuestions();
+            renderPublicClubForm();
+        }
+
+        function renderBuilderQuestions() {
+            const container = document.getElementById('builderQuestionsList');
+            document.getElementById('builderQuestionsCount').textContent = clubFormConfig.questions.length;
+
+            const typeLabels = {
+                text: 'نص قصير',
+                tel: 'رقم جوال',
+                email: 'بريد إلكتروني',
+                select: 'قائمة منسدلة',
+                radio: 'اختيار متعدد',
+                textarea: 'فقرة مفتوحة'
+            };
+
+            if (clubFormConfig.questions.length === 0) {
+                container.innerHTML = `<div class="p-8 text-center text-xs text-slate-400">لا توجد أسئلة حالياً. أضف سؤالاً من القائمة الجانبية.</div>`;
+                return;
+            }
+
+            container.innerHTML = clubFormConfig.questions.map((q, idx) => `
+                <div class="p-4 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 flex items-center justify-between gap-3">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-lg bg-club text-emerald-400 text-xs font-black flex items-center justify-center">${idx + 1}</span>
+                            <span class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">${q.label}</span>
+                            ${q.required ? '<span class="px-2 py-0.5 rounded-full bg-red-500/10 text-red-600 text-[10px] font-bold">إجباري</span>' : ''}
+                        </div>
+                        <p class="text-[11px] text-slate-500">
+                            النوع: ${typeLabels[q.type] || q.type}
+                            ${q.options && q.options.length ? ` • الخيارات: (${q.options.join(' ، ')})` : ''}
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-1 shrink-0">
+                        <button onclick="moveFormQuestion(${idx}, -1)" class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 text-xs" title="لأعلى"><i class="fa-solid fa-arrow-up"></i></button>
+                        <button onclick="moveFormQuestion(${idx}, 1)" class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 text-xs" title="لأسفل"><i class="fa-solid fa-arrow-down"></i></button>
+                        <button onclick="removeFormQuestion('${q.id}')" class="p-2 rounded-lg hover:bg-red-500/15 text-red-500 text-xs" title="حذف"><i class="fa-regular fa-trash-can"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function loadFormPreset(preset) {
+            if (preset === 'membership') {
+                clubFormConfig.title = 'نموذج التسجيل في عضوية نادي الاقتصاد 1447هـ';
+                clubFormConfig.description = 'نسعد بانضمامك إلى نادي الاقتصاد. يرجى تعبئة البيانات الأساسية واختيار اللجنة المناسبة لك.';
+                clubFormConfig.questions = [
+                    { id: 'q1', label: 'الاسم الثلاثي', type: 'text', placeholder: 'اكتب اسمك الثلاثي كاملاً', required: true, options: [] },
+                    { id: 'q2', label: 'رقم الجوال', type: 'tel', placeholder: '05XXXXXXXX', required: true, options: [] },
+                    { id: 'q3', label: 'البريد الإلكتروني', type: 'email', placeholder: 'example@email.com', required: true, options: [] },
+                    { id: 'q4', label: 'الرقم الجامعي', type: 'text', placeholder: '44XXXXXXXX', required: true, options: [] },
+                    { id: 'q5', label: 'اللجنة التي ترغب بالانضمام إليها', type: 'select', placeholder: '', required: true, options: ['لجنة التقارير', 'لجنة البرامج والفعاليات', 'لجنة العلاقات العامة', 'لجنة الإعلام والتسويق'] }
+                ];
+            } else if (preset === 'event') {
+                clubFormConfig.title = 'التسجيل في ملتقى الاستثمار والوعي المالي';
+                clubFormConfig.description = 'ينظم نادي الاقتصاد ملتقى الاستثمار الطلابي، سجل بياناتك لحجز مقعدك وإصدار شهادة الحضور.';
+                clubFormConfig.questions = [
+                    { id: 'q1', label: 'الاسم الثلاثي', type: 'text', placeholder: 'الاسم كما سيظهر في الشهادة', required: true, options: [] },
+                    { id: 'q2', label: 'رقم الجوال', type: 'tel', placeholder: '05XXXXXXXX', required: true, options: [] },
+                    { id: 'q3', label: 'البريد الإلكتروني', type: 'email', placeholder: 'example@email.com', required: true, options: [] },
+                    { id: 'q4', label: 'الرقم الجامعي', type: 'text', placeholder: '44XXXXXXXX', required: true, options: [] },
+                    { id: 'q5', label: 'فترة الحضور المفضلة', type: 'radio', placeholder: '', required: true, options: ['الفترة الصباحية (10:00 ص)', 'الفترة المسائية (1:00 م)'] }
+                ];
+            } else if (preset === 'survey') {
+                clubFormConfig.title = 'استبانة تقييم فعالية — لجنة التقارير';
+                clubFormConfig.description = 'يسر لجنة التقارير بنادي الاقتصاد استطلاع رأيكم لتطوير جودة الفعاليات القادمة.';
+                clubFormConfig.questions = [
+                    { id: 'q1', label: 'الاسم الثلاثي', type: 'text', placeholder: 'اختياري', required: false, options: [] },
+                    { id: 'q2', label: 'رقم الجوال', type: 'tel', placeholder: '05XXXXXXXX', required: false, options: [] },
+                    { id: 'q3', label: 'ما تقييمك العام لتنظيم الفعالية؟', type: 'radio', placeholder: '', required: true, options: ['ممتاز جداً', 'جيد جداً', 'مقبول', 'يحتاج لتطوير'] },
+                    { id: 'q4', label: 'مقترحاتك وملاحظاتك للجنة التقارير', type: 'textarea', placeholder: 'اكتب مقترحاتك هنا...', required: false, options: [] }
+                ];
+            }
+
+            document.getElementById('builderFormTitle').value = clubFormConfig.title;
+            document.getElementById('builderFormDesc').value = clubFormConfig.description;
+            persistFormState();
+            renderBuilderQuestions();
+            renderPublicClubForm();
+            showToast('تم تحميل القالب وتحديث الأسئلة بنجاح!');
+        }
+
+        // رسم واجهة تسجيل الطلاب العامة
+        function renderPublicClubForm() {
+            document.getElementById('publicFormTitleText').textContent = clubFormConfig.title;
+            document.getElementById('publicFormDescText').textContent = clubFormConfig.description;
+
+            const container = document.getElementById('publicFormFieldsContainer');
+            container.innerHTML = clubFormConfig.questions.map(q => {
+                const req = q.required ? 'required' : '';
+                const star = q.required ? '<span class="text-red-500">*</span>' : '';
+
+                let inputHtml = '';
+                if (q.type === 'text' || q.type === 'tel' || q.type === 'email') {
+                    const dir = (q.type === 'tel' || q.type === 'email') ? 'dir="ltr"' : '';
+                    inputHtml = `<input type="${q.type}" data-label="${q.label}" ${req} ${dir} placeholder="${q.placeholder || ''}" class="pub-field w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/15 text-sm text-right focus:outline-none focus:border-emerald-500">`;
+                } else if (q.type === 'textarea') {
+                    inputHtml = `<textarea rows="3" data-label="${q.label}" ${req} placeholder="${q.placeholder || ''}" class="pub-field w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/15 text-sm focus:outline-none focus:border-emerald-500"></textarea>`;
+                } else if (q.type === 'select') {
+                    inputHtml = `
+                        <select data-label="${q.label}" ${req} class="pub-field w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/15 text-sm font-bold focus:outline-none focus:border-emerald-500">
+                            <option value="">— اختر من القائمة —</option>
+                            ${(q.options || []).map(o => `<option value="${o}">${o}</option>`).join('')}
+                        </select>
+                    `;
+                } else if (q.type === 'radio') {
+                    inputHtml = `
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+                            ${(q.options || []).map(o => `
+                                <label class="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 dark:border-white/15 bg-slate-50/50 dark:bg-white/5 cursor-pointer hover:border-emerald-500 text-xs font-bold">
+                                    <input type="radio" name="${q.id}" value="${o}" data-label="${q.label}" ${req} class="pub-radio text-emerald-600">
+                                    <span>${o}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+
+                return `
+                    <div class="space-y-1.5">
+                        <label class="block text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100">${q.label} ${star}</label>
+                        ${inputHtml}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // دالة إرسال موحدة ومضمونة إلى Google Sheets (ترسل بصيغة JSON + URLSearchParams معاً)
+        async function sendPayloadToGoogleSheet(answersObj) {
+            const webhookUrl = (clubFormConfig.webhookUrl || DEFAULT_WEBHOOK_URL).trim();
+            if (!webhookUrl) return;
+
+            const unifiedPayload = {
+                timestamp: new Date().toLocaleString('ar-SA'),
+                formTitle: clubFormConfig.title,
+                fullName: answersObj['الاسم الثلاثي'] || answersObj['الاسم'] || '',
+                phone: answersObj['رقم الجوال'] || answersObj['الجوال'] || '',
+                email: answersObj['البريد الإلكتروني'] || answersObj['الإيميل'] || '',
+                studentId: answersObj['الرقم الجامعي'] || '',
+                answers: answersObj,
+                customAnswers: answersObj,
+                ...answersObj
+            };
+
+            // 1. إرسال POST JSON
+            fetch(webhookUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(unifiedPayload)
+            }).catch(() => {});
+
+            // 2. إرسال Form URL Encoded لضمان استقبال e.parameter أيضاً في Apps Script
+            const formParams = new URLSearchParams();
+            formParams.append('formTitle', unifiedPayload.formTitle);
+            formParams.append('fullName', unifiedPayload.fullName);
+            formParams.append('phone', unifiedPayload.phone);
+            formParams.append('email', unifiedPayload.email);
+            formParams.append('studentId', unifiedPayload.studentId);
+            Object.entries(answersObj).forEach(([k, v]) => formParams.append(k, v));
+
+            await fetch(webhookUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formParams
+            });
+        }
+
+        // عند ضغط الطالب على إرسال الفورم
+        async function handlePublicFormSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('publicSubmitBtn');
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> جاري الإرسال والحفظ في Google Sheets...`;
+
+            const answers = {};
+            document.querySelectorAll('#clubPublicRegistrationForm .pub-field').forEach(el => {
+                answers[el.dataset.label] = el.value.trim();
+            });
+            document.querySelectorAll('#clubPublicRegistrationForm .pub-radio:checked').forEach(el => {
+                answers[el.dataset.label] = el.value;
+            });
+
+            const nowStr = new Date().toLocaleString('ar-SA', { hour12: false });
+            formResponsesData.unshift({ timestamp: nowStr, answers });
+            persistFormState();
+            updateResponsesCountUI();
+
+            try {
+                await sendPayloadToGoogleSheet(answers);
+            } catch (err) {}
+
+            btn.disabled = false;
+            btn.innerHTML = `<span>إرسال وتأكيد التسجيل</span><i class="fa-solid fa-paper-plane text-xs"></i>`;
+
+            document.getElementById('publicFormCard').classList.add('hidden');
+            document.getElementById('publicFormSuccessBox').classList.remove('hidden');
+            showToast('تم حفظ التسجيل وإرساله إلى Google Sheets بنجاح!');
+        }
+
+        function resetPublicClubForm() {
+            document.getElementById('clubPublicRegistrationForm').reset();
+            document.getElementById('publicFormSuccessBox').classList.add('hidden');
+            document.getElementById('publicFormCard').classList.remove('hidden');
+        }
+
+        // زر إرسال صف تجريبي حقيقي لرابط الشيت
+        async function testWebhookConnection() {
+            const btn = document.getElementById('testSheetBtn');
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> جاري الإرسال للشيت...`;
+            }
+
+            const sampleAnswers = {
+                'الاسم الثلاثي': 'تجربة ربط — رئيس اللجنة خالد بلحمر',
+                'رقم الجوال': '0550001111',
+                'البريد الإلكتروني': 'khaled@economicclub.sa',
+                'الرقم الجامعي': '447000111',
+                'اللجنة التي ترغب بالانضمام إليها': 'لجنة التقارير (اختبار مباشر)'
+            };
+
+            try {
+                await sendPayloadToGoogleSheet(sampleAnswers);
+                formResponsesData.unshift({
+                    timestamp: new Date().toLocaleString('ar-SA', { hour12: false }),
+                    answers: sampleAnswers
+                });
+                persistFormState();
+                updateResponsesCountUI();
+                renderResponsesTable();
+                showToast('تم إرسال صف تجريبي فعلي إلى رابط Google Sheet الخاص بك!');
+            } catch (err) {
+                showToast('تم الإرسال، تحقق من جدول Google Sheet الآن');
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerHTML = `<i class="fa-solid fa-paper-plane"></i><span>إرسال صف تجريبي للشيت الآن</span>`;
+                }
+            }
+        }
+
+        function updateResponsesCountUI() {
+            document.getElementById('responsesCountBadge').textContent = formResponsesData.length;
+            document.getElementById('statTotalResponses').textContent = formResponsesData.length;
+        }
+
+        // رسم جدول المسجلين
+        function renderResponsesTable() {
+            const thead = document.getElementById('responsesTableHead');
+            const tbody = document.getElementById('responsesTableBody');
+
+            const cols = clubFormConfig.questions.map(q => q.label);
+            thead.innerHTML = `
+                <tr>
+                    <th class="py-3.5 px-4">#</th>
+                    <th class="py-3.5 px-4">وقت التسجيل</th>
+                    ${cols.map(c => `<th class="py-3.5 px-4">${c}</th>`).join('')}
+                </tr>
+            `;
+
+            tbody.innerHTML = formResponsesData.map((row, idx) => `
+                <tr class="hover:bg-slate-50/80 dark:hover:bg-white/5 transition">
+                    <td class="py-3 px-4 font-bold text-emerald-600">${idx + 1}</td>
+                    <td class="py-3 px-4 text-slate-500 text-xs">${row.timestamp}</td>
+                    ${cols.map(c => `<td class="py-3 px-4 font-medium text-slate-800 dark:text-slate-200">${row.answers[c] || '—'}</td>`).join('')}
+                </tr>
+            `).join('');
+        }
+
+        // تصدير المسجلين لملف CSV يفتح في Excel و Google Sheets
+        function exportResponsesToCSV() {
+            const cols = clubFormConfig.questions.map(q => q.label);
+            const headers = ['وقت التسجيل', ...cols];
+            const rows = formResponsesData.map(r => [
+                r.timestamp,
+                ...cols.map(c => `"${String(r.answers[c] || '').replace(/"/g, '""')}"`)
+            ]);
+
+            const csvContent = '\uFEFF' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'مسجلين_نادي_الاقتصاد.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            showToast('تم تحميل ملف Excel (CSV) للمسجلين بنجاح!');
+        }
+
+        // وضع واجهة المسجلين المستقلة (بدون القوائم الإدارية)
+        function enterStandalonePublicMode() {
+            switchTab('forms');
+            setFormsSubView('public');
+            document.getElementById('mainSidebar').classList.add('hidden');
+            document.getElementById('mainTopbar').classList.add('hidden');
+            document.getElementById('formsAdminToolbar').classList.add('hidden');
+            document.getElementById('formsPresetsBar').classList.add('hidden');
+            document.getElementById('standaloneExitBar').classList.remove('hidden');
+        }
+
+        function exitStandalonePublicMode() {
+            document.getElementById('mainSidebar').classList.remove('hidden');
+            document.getElementById('mainTopbar').classList.remove('hidden');
+            document.getElementById('formsAdminToolbar').classList.remove('hidden');
+            document.getElementById('formsPresetsBar').classList.remove('hidden');
+            document.getElementById('standaloneExitBar').classList.add('hidden');
+        }
+
+        // نافذة مشاركة الرابط و QR
+        function openShareFormModal() {
+            const payload = btoa(unescape(encodeURIComponent(JSON.stringify(clubFormConfig))));
+            const shareUrl = `${window.location.origin}${window.location.pathname}?mode=form&data=${payload}`;
+            document.getElementById('shareFormUrlInput').value = shareUrl;
+            document.getElementById('shareQrImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(shareUrl)}`;
+            const m = document.getElementById('shareFormModal');
+            m.classList.remove('hidden');
+            m.classList.add('flex');
+        }
+
+        function closeShareFormModal() {
+            const m = document.getElementById('shareFormModal');
+            m.classList.add('hidden');
+            m.classList.remove('flex');
+        }
+
+        function copyShareFormLink() {
+            const input = document.getElementById('shareFormUrlInput');
+            input.select();
+            document.execCommand('copy');
+            showToast('تم نسخ رابط التسجيل الجاهز للنشر!');
+        }
+
+        // نافذة كود Google Apps Script
+        function openSheetGuideModal() {
+            const m = document.getElementById('sheetGuideModal');
+            m.classList.remove('hidden');
+            m.classList.add('flex');
+        }
+
+        function closeSheetGuideModal() {
+            const m = document.getElementById('sheetGuideModal');
+            m.classList.add('hidden');
+            m.classList.remove('flex');
+        }
+
+        function copyAppsScriptCode() {
+            const code = document.getElementById('appsScriptCodeBlock').innerText;
+            const temp = document.createElement('textarea');
+            temp.value = code;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            showToast('تم نسخ كود Google Apps Script بنجاح!');
+        }
+
+        // رسم لوحة المهام (Kanban)
+        function renderKanban() {
+            const stages = [
+                { key: 'todo', title: 'قيد الانتظار', badge: 'bg-slate-200 text-slate-800' },
+                { key: 'doing', title: 'جاري العمل عليها', badge: 'bg-amber-100 text-amber-800' },
+                { key: 'done', title: 'مكتملة ومعتمدة', badge: 'bg-emerald-100 text-emerald-800' }
+            ];
+
+            const container = document.getElementById('kanbanContainer');
+            container.innerHTML = stages.map(st => {
+                const items = tasksData.filter(t => t.stage === st.key);
+                return `
+                    <div class="bg-white dark:bg-darkcard p-5 rounded-2xl border border-slate-200/80 dark:border-white/10 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-black text-sm">${st.title}</h4>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${st.badge}">${items.length}</span>
+                        </div>
+                        <div class="space-y-3">
+                            ${items.map(item => `
+                                <div class="p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200/70 dark:border-white/10 space-y-2">
+                                    <p class="font-bold text-xs sm:text-sm">${item.title}</p>
+                                    <div class="flex items-center justify-between text-[11px] text-slate-500">
+                                        <span>${item.assignee}</span>
+                                        ${st.key !== 'done' ? `<button onclick="advanceTask(${item.id})" class="text-emerald-600 font-bold hover:underline">نقل للمرحلة التالية ←</button>` : '<span class="text-emerald-600 font-bold">✓ منجز</span>'}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function advanceTask(id) {
+            const t = tasksData.find(x => x.id === id);
+            if (!t) return;
+            if (t.stage === 'todo') t.stage = 'doing';
+            else if (t.stage === 'doing') t.stage = 'done';
+            renderKanban();
+            showToast('تم تحديث مرحلة المهمة');
+        }
+
+        // رسم دليل أعضاء اللجنة
+        function renderMembers() {
+            const grid = document.getElementById('membersGrid');
+            grid.innerHTML = membersList.map(m => `
+                <div class="bg-white dark:bg-darkcard p-5 rounded-2xl border border-slate-200/80 dark:border-white/10 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-club text-emerald-400 font-black flex items-center justify-center text-sm shrink-0">
+                        ${m.badge}
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h4 class="font-black text-sm text-slate-900 dark:text-white truncate">${m.name}</h4>
+                        <p class="text-xs text-emerald-600 font-bold">${m.role}</p>
+                        <p class="text-[11px] text-slate-400 mt-1">التقارير المنجزة: ${m.reports}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // رسم الرسوم البيانية
+        function initCharts() {
+            if (window.Chart) {
+                Chart.defaults.font.family = "'Thmanyah Sans', sans-serif";
+            }
+            const barCtx = document.getElementById('reportsBarChart');
+            if (barCtx && window.Chart) {
+                new Chart(barCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['محرم', 'صفر', 'ربيع الأول', 'ربيع الثاني'],
+                        datasets: [{
+                            label: 'التقارير المنجزة',
+                            data: [4, 6, 5, 4],
+                            backgroundColor: '#10b981',
+                            borderRadius: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+
+            const doughCtx = document.getElementById('reportsDoughnutChart');
+            if (doughCtx && window.Chart) {
+                new Chart(doughCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['معتمد', 'قيد المراجعة'],
+                        datasets: [{
+                            data: [15, 4],
+                            backgroundColor: ['#0b221a', '#10b981']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                });
+            }
+        }
+
+        // تحميل وتثبيت خطوط ثمانية مباشرة من ملف Thmanyah-Font-Family.zip الرسمي كتعزيز إضافي
+        async function loadOfficialThmanyahZipFonts() {
+            if (!window.JSZip || !window.FontFace) return;
+            try {
+                const res = await fetch('https://public-assets.thmanyah.com/font/Thmanyah-Font-Family.zip');
+                if (!res.ok) return;
+                const blob = await res.blob();
+                const zip = await JSZip.loadAsync(blob);
+                const weightMap = {
+                    light: '300',
+                    regular: '400',
+                    medium: '500',
+                    bold: '700',
+                    black: '900'
+                };
+
+                const entries = Object.keys(zip.files).filter(name =>
+                    !zip.files[name].dir && /\.(otf|ttf|woff2)$/i.test(name) && !name.includes('__MACOSX')
+                );
+
+                for (const filePath of entries) {
+                    const lower = filePath.toLowerCase();
+                    if (!lower.includes('sans')) continue;
+                    let weight = '400';
+                    for (const [k, w] of Object.entries(weightMap)) {
+                        if (lower.includes(k)) { weight = w; break; }
+                    }
+                    const buffer = await zip.files[filePath].async('arraybuffer');
+                    const f1 = new FontFace('Thmanyah Sans', buffer, { weight, style: 'normal' });
+                    await f1.load();
+                    document.fonts.add(f1);
+                    if (weight === '700') {
+                        const f600 = new FontFace('Thmanyah Sans', buffer, { weight: '600', style: 'normal' });
+                        await f600.load();
+                        document.fonts.add(f600);
+                    }
+                    if (weight === '900') {
+                        const f800 = new FontFace('Thmanyah Sans', buffer, { weight: '800', style: 'normal' });
+                        await f800.load();
+                        document.fonts.add(f800);
+                    }
+                }
+            } catch (err) {
+                // في حال منع CORS، يعمل خط ثمانية المحمّل عبر حزمة CDN مباشرة
+            }
+        }
+
+        // التهيئة الكاملة عند تحميل الصفحة
+        window.addEventListener('DOMContentLoaded', () => {
+            loadOfficialThmanyahZipFonts();
+            loadPersistedFormState();
+            renderReportsTable();
+            renderBuilderQuestions();
+            renderPublicClubForm();
+            renderResponsesTable();
+            renderKanban();
+            renderMembers();
+            updateResponsesCountUI();
+            initCharts();
+
+            // فحص إذا كان الرابط المفتوح هو رابط تسجيل طالب مباشر
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('mode') === 'form') {
+                const encoded = params.get('data');
+                if (encoded) {
+                    try {
+                        clubFormConfig = JSON.parse(decodeURIComponent(escape(atob(encoded))));
+                        renderPublicClubForm();
+                    } catch (err) {}
+                }
+                enterStandalonePublicMode();
+                document.getElementById('standaloneExitBar').classList.add('hidden');
+            }
+
+            runInitialSplash();
+        });
+    </script>
+</body>
+</html>
